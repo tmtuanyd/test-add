@@ -1,0 +1,89 @@
+<!DOCTYPE HTML5>
+<html>
+<head>
+	<style>
+        .content {
+            width: 60%;
+            margin: 0 auto;
+        }
+
+        .advertisement {
+            min-height: 400px;
+            max-height: 70%;
+        / / height should never be more than 90 % of screen height, ok ?
+        }
+	</style>
+</head>
+<body>
+<div class="content">
+	<h1>Users page h1</h1>
+	<p>Some user's content here</p>
+	<div class="advertisement">
+
+		<div class="video-container" style="width: 100%;" data-height="720px" data-width="1280px">
+			<div class="video-wrapper" style="max-height:100%;max-width:100%;position:relative">
+				<style> @keyframes spin {
+                            0% {
+                                transform: rotate(0deg);
+                            }
+                            100% {
+                                transform: rotate(360deg);
+                            }
+                        }</style>
+				<div class="skeleton-loader"
+					 style="width: 100%; min-width: 336px;min-height: 170px;position: absolute;background-color: black;top: 0;left: 0;z-index: 100000;display: flex;align-items: center;justify-content: center;">
+					<div class="spinner"
+						 style="border: 4px solid rgba(255, 255, 255, 0.3); border-top: 4px solid #ffffff;border-radius: 50%;width: 30px;height: 30px;animation: spin 1s linear infinite;"></div>
+				</div>
+			</div>
+		</div>
+		<script type="text/javascript"> (function init() {
+			let identifier = Math.floor(Math.random() * 100000).toString();
+			window['loadVideo_' + identifier] = function () {
+				new VideoPlayerProcessor({
+					'materialId': 1943174,
+					'impressionURL': decodeURIComponent('https://ti.tradetracker.net/?c=16255&m=1943174&a=139172&r=&t=json'),
+					'eventURLs': {
+						"videoEventStartURL": "http:\/\/vp.tradetracker.local:8080\/start?c=16255&m=1943174&a=139172&r=&vt=ns&et=s&vsid=",
+						"videoEventPartURL": "http:\/\/vp.tradetracker.local:8080\/part?c=16255&m=1943174&a=139172&r=&vt=ns&et=p&vsid=",
+						"videoEventCompleteURL": "http:\/\/vp.tradetracker.local:8080\/complete?c=16255&m=1943174&a=139172&r=&vt=ns&et=c&vsid="
+					},
+					'link': decodeURIComponent('https://tc.tradetracker.net/?c=16255&m=1943174&a=139172&r=&u='),
+					'sectionDurationSeconds': 3,
+					'videoDurationSeconds': 30,
+					'fileLocation': decodeURI('6AWphWJtZ62mlhWyrY4JAjN9YxWs00Z6pjjMetuFZcxA'),
+					'cssLocation': 'resources',
+					'deliveryMode': 'baseline',
+					'campaignLogo': 'logo.png'
+				}, '', '{"affiliateSiteID":"139172","ctaLayout":"bottom-left","ctaText":"tt","ctaTextColorHex":"#000000","ctaSupportingText":"ttttttttt","ctaBgColorHex":"#F4F4F4","ctaBgOpacity":"75","ctaButtonText":"","ctaButtonColor":"#418ac9","ctaButtonTextColor":"#ffffff","taglineShow":"t","ctaTaglineText":"qqi wueiuqwe iasud qpwod ip[qlasdlakshd qwhdk jasd","richShow":"t","richText":"text","richTextColor":"#808080","richButtonText":"test text","richButtonTextColor":"#ffffff","richBgColor":"#045195","useAutoDimensions":"t","playerWidth":"","playerHeight":"","ctaReferenceUrl":""}', identifier);
+			};
+			document.querySelectorAll('.video-wrapper:not([id])').forEach(item => {
+				item.setAttribute('id', 'video-wrapper-' + identifier);
+			});
+			let callFunction = () => {
+				window.playerLoading = false;
+				window['loadVideo_' + identifier]();
+			};
+			let videoPlayerProcessorScriptBlock = document.querySelector('#player-processor');
+			if (videoPlayerProcessorScriptBlock === null) {
+				var script = document.createElement("script");
+				script.setAttribute("id", "player-processor");
+				window.playerLoading = true;
+				script.src = 'videoPlayerProcessor.js?v=46a8d9ebfeab14b7d8f3eb794fadd020db1c6da5';
+				script.setAttribute("type", "text/javascript");
+				script.setAttribute("async", true);
+				document.body.appendChild(script);
+				script.addEventListener("load", callFunction);
+			} else if (window.playerLoading) {
+				setTimeout(() => {
+					videoPlayerProcessorScriptBlock.addEventListener("load", callFunction);
+				}, 1000)
+			} else {
+				window['loadVideo_' + identifier]();
+			}
+		})();</script>
+
+	</div>
+</div>
+</body>
+</html>
